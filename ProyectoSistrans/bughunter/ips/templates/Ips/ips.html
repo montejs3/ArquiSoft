@@ -22,7 +22,7 @@
 
                     <table class="table table-hover">
                         <thead>
-                        <tr style="color:#0E2EB0">
+                        <tr style="color:#000106">
                             <th>Ips Estadisticas</th>
                         </tr>
                         </thead>
@@ -30,15 +30,34 @@
 
                         {% for ips in ipss_list %}
                         <tr>
-                            <td >{{ ips.name }}</td>
+                            
+                                <td ><b>{{ ips.name }}</b></td>
+                      
+                           
 
 
                             <table class="table ">
                                 <tr>
                                     <tbody>
+                                        <tr style="color:#0eb013">
+                                            <th>Pacientes</th>
+                                        </tr>
                                    
                                     {% for pa in ips.paciente.all %}
                                     <td>{{ pa.namePaciente }}</td>
+                                    {% endfor %}
+                                </tbody>
+                                </tr>
+                            </table>
+                            <table class="table ">
+                                <tr>
+                                    <tbody>
+                                        <tr style="color:#0eb013">
+                                            <th>Doctores</th>
+                                        </tr>
+                                   
+                                    {% for pa in ips.doctores.all %}
+                                    <td>{{ pa.nameDoctor }}</td>
                                     {% endfor %}
                                 </tbody>
                                 </tr>
