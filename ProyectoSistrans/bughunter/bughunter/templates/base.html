@@ -12,18 +12,22 @@
         <br>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            
+            <nav class="navbar navbar-light bg-light">
+                <a class="navbar-brand" href="/">
+                <img src="/static/media/widmylogo.jpg" width="45" height="45" alt="">
+                </a>
+            </nav>    
 
           <nav class="navbar navbar-light bg-light">
               <a class="navbar-brand" href="/">
-                  Monitoring App
+                  Widmy
               </a>
           </nav>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/paciente/">Paciente</a>
+                    <a class="nav-link" href="/paciente/">Administrador de Entidad</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/ips/">Ips</a>
@@ -37,12 +41,21 @@
         </nav>
 
 
+        
+
+
         <main> 
           <div class="container" style="min-height: 580px;">
           {% block content %} 
           {% endblock %} 
           </div>
         </main> 
+
+
+        <div>
+            
+
+        </div>
 
     </body>
 
@@ -53,9 +66,23 @@
 
             <div style="padding: 30px">
                 <div style="float: left; width: 400px;" >ISIS-2503 Arquitectura y Diseño de Software</div>
+                
                 <div style="float: right; width: 220px;" >Universidad de los Andes</div>
                 <br>
-                <div style="float: left; width: 400px;" ><i>   Díaz</i></div>
+                
+                <div style="float: left; width: 400px;" ><i>Grupo 6</i></div>
+                <div >
+                    <div style=" width: 220px; margin: 0px auto;" >
+                        <a href="https://www.linkedin.com/company/widmy">
+                        <img src="/static/media/link.jpg" alt="Linkedin" style="width:42px;height:42px;">
+                        </a>
+                    </div>
+                    <div style="width: 220px; margin: 0px auto;" >
+                        <a href="https://www.instagram.com/widmy_co/">
+                        <img src="/static/media/instagram.png" alt="Instagram" style="width:42px;height:42px;">
+                        </a>
+                    </div>
+                </div>
             </div>
             <br>
 
