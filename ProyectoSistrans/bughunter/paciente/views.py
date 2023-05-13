@@ -11,7 +11,7 @@ from bughunter.auth0backend import getRole
 @login_required
 def paciente_list(request):
     role = getRole(request)
-    if role == 'Administrador Sistema':
+    if role == 'Administrador Sistema' or role == 'Doctor' :
         pacientes = get_pacientes()
         context = {
             'pacientes_list': pacientes
