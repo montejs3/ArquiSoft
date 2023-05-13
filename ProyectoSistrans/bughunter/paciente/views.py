@@ -1,16 +1,24 @@
 from django.shortcuts import render
 from .forms import PacienteForm
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect , HttpResponse
 from django.urls import reverse
 from .logic.paciente_logic import create_paciente, get_pacientes
+from django.contrib.auth.decorators import login_required
+from bughunter.auth0backend import getRole
 
+
+@login_required
 def paciente_list(request):
-    pacientes = get_pacientes()
-    context = {
-        'pacientes_list': pacientes
-    }
-    return render(request, 'Paciente/paciente.html', context)
+    role = getRole(request)
+    if role == 'Administrador Sistema':
+        pacientes = get_pacientes()
+        context = {
+            'pacientes_list': pacientes
+        }
+        return render(request, 'Paciente/paciente.html', context)
+    else :
+        return HttpResponse('Unauthorized User')
 
 def paciente_create(request):
     if request.method == 'POST':
