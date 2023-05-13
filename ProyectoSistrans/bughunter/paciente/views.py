@@ -11,7 +11,7 @@ from bughunter.auth0backend import getRole
 @login_required
 def paciente_list(request):
     role = getRole(request)
-    if role == 'Administrador Sistema' or role == 'Doctor' :
+    if role == 'Administrador Sistema' or role == 'Doctor' or role == 'Enfermera':
         pacientes = get_pacientes()
         context = {
             'pacientes_list': pacientes
@@ -19,21 +19,26 @@ def paciente_list(request):
         return render(request, 'Paciente/paciente.html', context)
     else :
         return HttpResponse('Unauthorized User')
-
+    
+@login_required
 def paciente_create(request):
-    if request.method == 'POST':
-        form = PacienteForm(request.POST)
-        if form.is_valid():
-            create_paciente(form)
-            messages.add_message(request, messages.SUCCESS, 'Paciente create successful')
-            return HttpResponseRedirect(reverse('pacienteCreate'))
+    role = getRole(request)
+    if role == 'Administrador Sistema' or role == 'Doctor' :
+        if request.method == 'POST':
+            form = PacienteForm(request.POST)
+            if form.is_valid():
+                create_paciente(form)
+                messages.add_message(request, messages.SUCCESS, 'Paciente create successful')
+                return HttpResponseRedirect(reverse('pacienteCreate'))
+            else:
+                print(form.errors)
         else:
-            print(form.errors)
-    else:
-        form = PacienteForm()
+            form = PacienteForm()
 
-    context = {
-        'form': form,
-    }
+        context = {
+            'form': form,
+        }
 
-    return render(request, 'Paciente/pacienteCreate.html', context)
+        return render(request, 'Paciente/pacienteCreate.html', context)
+    else :
+        return HttpResponse('Unauthorized User')
